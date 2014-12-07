@@ -21,10 +21,10 @@ operator<<
   std::operator<<(p_os,',');
   p_os << p_v.second;
   std::operator<<(p_os,')');
- return p_os;
+  return p_os;
 }
 
-template <typename C>
+template <typename C, typename T = typename C::value_type>
 ostream&
 operator<<
  (ostream& p_os,const C& p_c)
@@ -33,10 +33,12 @@ operator<<
   {
 	typename C::value_type v = *cit;
 	p_os << v;
-        std::operator<<(p_os,",");
+    std::operator<<(p_os,",");
   }
   return p_os;
 }
+
+
 
 int
 main
@@ -47,40 +49,40 @@ main
   {
 	v.push_back(i);
   }
-  cout << v << endl;
+  cout << "v: " << v << endl;
   list<int> l;
   for(int i=0;i<4;++i)
   {
 	l.push_back(i);
   }
-  cout << l << endl;
-  forward_list<int> fl = {0,1,2,3};
-  cout << fl << endl;
+  cout << "l: " << l << endl;
   set<int> s;
   for(int i=0;i<4;++i)
   {
 	s.insert(i);
   }
-  cout << s << endl;
+  cout << "s: " << s << endl;
   deque<int> d;
   for(int i=0;i<4;++i)
   {
 	d.push_back(i);
   }
-  cout << d << endl;
-  array<int,4> a = {0,1,2,3};
-  cout << a << endl;
+  cout << "d: " << d << endl;
+  std::array<int,4> a = {0,1,2,3};
+  cout << "a: " << a << endl;
   unordered_map<int,int> um;
   for(int i=0;i<4;++i)
   {
 	um[i] = i;
  }
-  cout << um << endl;
+  cout << "um: " << um << endl;
   map<int,int> m;
   for(int i=0;i<4;++i)
   {
 	m[i] = i;
   }
-  cout << m << endl;
- return 0;
+  cout << "m: " << m << endl;
+  forward_list<int> fl = {0,1,2,3};
+  cout << "fl: " << fl << endl;
+  return 0;
 }
